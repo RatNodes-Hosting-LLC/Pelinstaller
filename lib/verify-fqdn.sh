@@ -4,10 +4,9 @@ set -e
 
 ######################################################################################
 #                                                                                    #
-# Project 'pelican-installer'                                                        #
+# Project 'pterodactyl-installer'                                                    #
 #                                                                                    #
 # Copyright (C) 2018 - 2024, Vilhelm Prytz, <vilhelm@prytznet.se>                    #
-# Copyright (C) 2021 - 2024, Matthew Jacob, <me@matthew.expert>                      #
 #                                                                                    #
 #   This program is free software: you can redistribute it and/or modify             #
 #   it under the terms of the GNU General Public License as published by             #
@@ -22,10 +21,10 @@ set -e
 #   You should have received a copy of the GNU General Public License                #
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.           #
 #                                                                                    #
-# https://github.com/pelican-installer/pelican-installer/blob/Production/LICENSE.md  #
+# https://github.com/pterodactyl-installer/pterodactyl-installer/blob/master/LICENSE #
 #                                                                                    #
-# This script is not associated with the official Pelican Project.                   #
-# https://github.com/pelican-installer/pelican-installer                             #
+# This script is not associated with the official Pterodactyl Project.               #
+# https://github.com/pterodactyl-installer/pterodactyl-installer                     #
 #                                                                                    #
 ######################################################################################
 
@@ -37,8 +36,8 @@ if ! fn_exists lib_loaded; then
   ! fn_exists lib_loaded && echo "* ERROR: Could not load lib script" && exit 1
 fi
 
-CHECKIP_URL="https://ip.forestracks.net"
-DNS_SERVER="9.9.9.9"
+CHECKIP_URL="https://checkip.pterodactyl-installer.se"
+DNS_SERVER="8.8.8.8"
 
 # exit with error status code if user is not root
 if [[ $EUID -ne 0 ]]; then
@@ -74,9 +73,8 @@ dep_install() {
 
 confirm() {
   output "This script will perform a HTTPS request to the endpoint $CHECKIP_URL"
-  output "The official IP check service for this script, https://ip.forestracks.net"
-  output "- we will store request logs for several days for DDoS Mitigation reasons."
-  output "- Requests will also be logged by Cloudflare and other bandwidth providers."
+  output "The official check-IP service for this script, https://checkip.pterodactyl-installer.se"
+  output "- will not log or share any IP-information with any third-party."
   output "If you would like to use another service, feel free to modify the script."
 
   echo -e -n "* I agree that this HTTPS request is performed (y/N): "
